@@ -39,3 +39,16 @@ Starting Training Loop...
 ```
 ## Translationg English sentence to French with the trained model.
 make sure the saved model exists in trained_model/ directory/
+
+```
+python translate.py 
+```
+```
+usage: translate.py [-h] [--translate_sentence TRANSLATE_SENTENCE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --translate_sentence TRANSLATE_SENTENCE
+                        sentence to translate
+
+```
