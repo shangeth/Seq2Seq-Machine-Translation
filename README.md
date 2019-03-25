@@ -5,6 +5,7 @@
 ```
 git clone https://github.com/shangeth/Seq2Seq-Machine-Translation.git
 cd Seq2Seq-Machine-Translation
+mkdir trained_model
 ```
 
 ## Training the model
