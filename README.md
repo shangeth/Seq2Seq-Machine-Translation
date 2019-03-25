@@ -8,6 +8,8 @@ cd Seq2Seq-Machine-Translation
 mkdir trained_model
 ```
 
+Check [DEMO Notebook](./DEMO.ipynb)
+
 ## Training the model
 Place the data in data/ directory.
 
