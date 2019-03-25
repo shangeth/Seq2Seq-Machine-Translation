@@ -1,6 +1,7 @@
 from data_process import *
 from model import *
 import argparse
+from train import *
 
 MAX_LENGTH = 25
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -46,9 +47,15 @@ def load_model():
 	hidden_size = 256
 	e = EncoderRNN(input_lang.n_words, hidden_size).to(device)
 	d = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).to(device)
-	checkpoint = torch.load('./trained_model/seq2seq.net')
+	checkpoint = torch.load('./trained_model/seq2seq.net', map_location=lambda storage, loc: storage)
 	e.load_state_dict(checkpoint['encoder'])
 	d.load_state_dict(checkpoint['decoder'])
+	if torch.cuda.is_available():
+		e.cuda()
+		d.cuda()
+	else:
+		e.cpu()
+		d.cpu()
 	return e, d
 
 
