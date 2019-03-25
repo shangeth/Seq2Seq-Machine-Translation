@@ -37,3 +37,5 @@ fra 21267
 Starting Training Loop...
 3m 44s (- 0m 0s) (5000 100%) 5.0887
 ```
+## Translationg English sentence to French with the trained model.
+make sure the saved model exists in trained_model/ directory/
