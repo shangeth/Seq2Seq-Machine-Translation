@@ -1,5 +1,6 @@
 from data_process import *
 from model import *
+import argparse
 
 MAX_LENGTH = 25
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
