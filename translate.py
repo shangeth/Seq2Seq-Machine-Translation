@@ -4,7 +4,6 @@ import argparse
 
 MAX_LENGTH = 25
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-input_lang, output_lang, pairs = prepareData('eng', 'fra')
 
 
 def evaluate(encoder, decoder, sentence, max_length=MAX_LENGTH):
@@ -47,7 +46,7 @@ def load_model():
 	hidden_size = 256
 	e = EncoderRNN(input_lang.n_words, hidden_size).to(device)
 	d = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).to(device)
-	checkpoint = torch.load(PATH)
+	checkpoint = torch.load('./trained_model/seq2seq.net')
 	e.load_state_dict(checkpoint['encoder'])
 	d.load_state_dict(checkpoint['decoder'])
 	return e, d
@@ -63,5 +62,8 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument("--translate_sentence", help="sentence to translate", default=True)
 	args = parser.parse_args()
+
+	global  input_lang, output_lang, pairs
+	input_lang, output_lang, pairs = prepareData('eng', 'fra')
 	main(args.translate_sentence)
  
