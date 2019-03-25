@@ -22,3 +22,8 @@ optional arguments:
   --epochs EPOCHS  no of epochs to train
   --lr LR          learning rate
 ```
+
+Change the hyperparameters as needed and optimizer in the train.py file and train the model. Data preprocessing will be done before training.
+```
+python train.py --epoch=5000 --lr=0.0001
+```
