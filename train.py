@@ -117,7 +117,7 @@ def trainIters(encoder, decoder, n_iters, pairs, print_every=1000, plot_every=10
 
 
 def save_model(e, d):
-	torch.save({'encoder':e.state_dict(), 'decoder':d.state_dict()}, './trained_mdoel/seq2seq.net')
+	torch.save({'encoder':e.state_dict(), 'decoder':d.state_dict()}, './trained_model/seq2seq.net')
 
 
 
@@ -130,7 +130,7 @@ def main():
 
 	global  input_lang, output_lang, pairs
 	input_lang, output_lang, pairs = prepareData('eng', 'fra')
-	
+
 	hidden_size = 256
 	encoder1 = EncoderRNN(input_lang.n_words, hidden_size).to(device)
 	attn_decoder1 = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).to(device)
