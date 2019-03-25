@@ -4,10 +4,6 @@ import string
 import re
 import random
 
-
-SOS_token = 0
-EOS_token = 1
-​
 ​
 class Language:
     def __init__(self, name):
