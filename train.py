@@ -111,7 +111,7 @@ def trainIters(encoder, decoder, n_iters, pairs, print_every=1000, plot_every=10
 	        plot_loss_avg = plot_loss_total / plot_every
 	        plot_losses.append(plot_loss_avg)
 	        plot_loss_total = 0
-    save_model(encoder, decoder)
+	save_model(encoder, decoder)
 
 
 def save_model(e, d):
