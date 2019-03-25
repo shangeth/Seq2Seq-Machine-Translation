@@ -54,3 +54,16 @@ optional arguments:
                         sentence to translate
 
 ```
+
+```
+!python translate.py --translate_sentence='This is my sister!'
+```
+```
+135842 translation pairs found in dataset.
+Reduced dataset to 135690 translation pairs.
+No of words in each language:
+eng 12996
+fra 21267
+input = this is my sister !
+output = je ne que vous vous pas <EOS>
+```
