@@ -9,7 +9,7 @@ EOS_token = 1
 teacher_forcing_ratio = 0.5
 MAX_LENGTH = 25
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-input_lang, output_lang, pairs = prepareData('eng', 'fra')
+
 
 def asMinutes(s):
     m = math.floor(s / 60)
@@ -82,6 +82,7 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
 
 
 def trainIters(encoder, decoder, n_iters, pairs, print_every=1000, plot_every=100, learning_rate=0.01):
+	print('Starting Training Loop...')
 	start = time.time()
 	plot_losses = []
 	print_loss_total = 0  # Reset every print_every
@@ -121,10 +122,15 @@ def save_model(e, d):
 
 
 def main():
+
 	parser = argparse.ArgumentParser()
 	parser.add_argument("--epochs", help="no of epochs to train", default=75000)
 	parser.add_argument("--lr", help="learning rate", default=0.001)
 	args = parser.parse_args()
+
+	global  input_lang, output_lang, pairs
+	input_lang, output_lang, pairs = prepareData('eng', 'fra')
+	
 	hidden_size = 256
 	encoder1 = EncoderRNN(input_lang.n_words, hidden_size).to(device)
 	attn_decoder1 = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).to(device)
