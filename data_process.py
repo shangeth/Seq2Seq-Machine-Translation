@@ -1,3 +1,10 @@
+from io import open
+import unicodedata
+import string
+import re
+import random
+
+
 SOS_token = 0
 EOS_token = 1
 ​
@@ -91,7 +98,7 @@ def prepareData(lang1, lang2, reverse=False):
 
 
 def main():
-    input_lang, output_lang, pairs = prepareData('eng', 'fra', True)
+    input_lang, output_lang, pairs = prepareData('eng', 'fra')
 
 if __name__ == '__main__':
     main()
