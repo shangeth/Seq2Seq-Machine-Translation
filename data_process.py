@@ -4,7 +4,7 @@ import string
 import re
 import random
 
-​
+
 class Language:
     def __init__(self, name):
         '''
@@ -15,11 +15,9 @@ class Language:
         self.word2count = {}
         self.index2word = {0: "SOS", 1: "EOS"}
         self.n_words = 2 
-​
     def addSentence(self, sentence):
         for word in sentence.split(' '):
             self.addWord(word)
-​
     def addWord(self, word):
         if word not in self.word2index:
             self.word2index[word] = self.n_words
