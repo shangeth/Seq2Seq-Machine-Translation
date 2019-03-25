@@ -1,4 +1,9 @@
 from data_process import *
+from model import *
+
+MAX_LENGTH = 25
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+input_lang, output_lang, pairs = prepareData('eng', 'fra')
 
 
 def evaluate(encoder, decoder, sentence, max_length=MAX_LENGTH):
@@ -33,11 +38,21 @@ def evaluate(encoder, decoder, sentence, max_length=MAX_LENGTH):
 
 def evaluateAndShowAttention(input_sentence):
 	#load model
-	
+	encoder1, attn_decoder1 = load_model()
     output_words, attentions = evaluate(
         encoder1, attn_decoder1, input_sentence)
     print('input =', input_sentence)
     print('output =', ' '.join(output_words))
+
+def load_model():
+	hidden_size = 256
+	e = EncoderRNN(input_lang.n_words, hidden_size).to(device)
+	d = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).to(device)
+	checkpoint = torch.load(PATH)
+	e.load_state_dict(checkpoint['encoder'])
+	d.load_state_dict(checkpoint['decoder'])
+	return e, d
+
 
 
 def main(sentence):

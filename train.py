@@ -111,17 +111,24 @@ def trainIters(encoder, decoder, n_iters, pairs, print_every=1000, plot_every=10
 	        plot_loss_avg = plot_loss_total / plot_every
 	        plot_losses.append(plot_loss_avg)
 	        plot_loss_total = 0
+    save_model(encoder, decoder)
 
-	showPlot(plot_losses)
 
+def save_model(e, d):
+	torch.save({'encoder':e.state_dict(), 'decoder':d.state_dict()}, './trained_mdoel/seq2seq.net')
 
 
 
 def main():
+	parser = argparse.ArgumentParser()
+    parser.add_argument("--epochs", help="no of epochs to train", default=75000)
+    parser.add_argument("--lr", help="learning rate", default=0.001)
+    args = parser.parse_args()
+
 	hidden_size = 256
 	encoder1 = EncoderRNN(input_lang.n_words, hidden_size).to(device)
 	attn_decoder1 = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).to(device)
-	trainIters(encoder1, attn_decoder1, 75000, pairs, print_every=5000)
+	trainIters(encoder1, attn_decoder1, int(args.epochs), pairs, print_every=5000, float(args.lr))
 
 
 
