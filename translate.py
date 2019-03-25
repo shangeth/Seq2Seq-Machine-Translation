@@ -32,7 +32,22 @@ def evaluate(encoder, decoder, sentence, max_length=MAX_LENGTH):
         return decoded_words, decoder_attentions[:di + 1]
 
 def evaluateAndShowAttention(input_sentence):
+	#load model
+	
     output_words, attentions = evaluate(
         encoder1, attn_decoder1, input_sentence)
     print('input =', input_sentence)
     print('output =', ' '.join(output_words))
+
+
+def main(sentence):
+	sentence = process_sentence(sentence)
+	evaluateAndShowAttention(sentence)
+	
+
+if __name__ == '__main__':
+	parser = argparse.ArgumentParser()
+    parser.add_argument("--translate_sentence", help="sentence to translate", default=True)
+    args = parser.parse_args()
+    main(args.translate_sentence)
+ 
