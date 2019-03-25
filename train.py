@@ -121,9 +121,9 @@ def save_model(e, d):
 
 def main():
 	parser = argparse.ArgumentParser()
-    parser.add_argument("--epochs", help="no of epochs to train", default=75000)
-    parser.add_argument("--lr", help="learning rate", default=0.001)
-    args = parser.parse_args()
+	parser.add_argument("--epochs", help="no of epochs to train", default=75000)
+	parser.add_argument("--lr", help="learning rate", default=0.001)
+	args = parser.parse_args()
 
 	hidden_size = 256
 	encoder1 = EncoderRNN(input_lang.n_words, hidden_size).to(device)
