@@ -41,7 +41,7 @@ Starting Training Loop...
 make sure the saved model exists in trained_model/ directory/
 
 ```
-python translate.py 
+python translate.py -h
 ```
 ```
 usage: translate.py [-h] [--translate_sentence TRANSLATE_SENTENCE]
